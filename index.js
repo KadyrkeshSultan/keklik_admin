@@ -1,17 +1,21 @@
 "use strict";
 
-const PORT = 3000;
+const express = require("express");
+const app = express();
 
-let express = require("express");
-let app = express();
+app.use(express.static(__dirname + "/dist"));
 
-app.use(express.static(__dirname + "/static"));
-
-app.get('/', function(req, res) {
-    res.sendfile("static/index.html");
+app.get("/*", function(req, res) {
+    res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.sendfile("dist/index.html");
 });
 
-let port = PORT;
-app.listen(port);
+app.use(function(req, res, next) {
+    res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+    next();
+});
 
-console.log("Server works on port: " + port);
+const APPLICATION_PORT = 3000;
+const port = process.env.PORT || APPLICATION_PORT;
+app.listen(port);
+console.log("Server works on port " + port);

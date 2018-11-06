@@ -82,7 +82,8 @@ function registrate() {
        const token = answerObj.token.toString();
        localStorage.setItem("MyToken", "Token " + token);
        localStorage.setItem("UserName", login);
-       alert("Регистрация\n" + answer);
+       // alert("Регистрация\n" + answer);
+        get("auth_answer").innerHTML = "<br>Регистрация, username = \n" + JSON.parse(answer).username;
     });
 }
 
@@ -98,7 +99,8 @@ function avtorizate() {
         const token = answerObj.token.toString();
         localStorage.setItem("MyToken", "Token " + token);
         localStorage.setItem("UserName", login);
-        alert("Авторизация\n" + answer);
+        // alert("Авторизация\n" + answer);
+        get("auth_answer").innerHTML = "<br>Авторизация, usermame = \n" + JSON.parse(answer).username;
     });
 }
 
@@ -107,7 +109,8 @@ function createorganization() {
     bodyQueryWithToken("POST", start + "/organizations/", JSON.stringify({
        name: organizationName
     }), (answer) => {
-        alert(answer);
+        // alert(answer);
+        get("answer").innerHTML = "Организация = \n" + JSON.parse(answer).name + " (id = " + JSON.parse(answer).id + ")";
     });
 }
 
@@ -152,7 +155,8 @@ function addGroupFunc() {
     bodyQueryWithToken("POST", start + `/organizations/${orgId}/groups/`, JSON.stringify({
         name: groupName,
     }), (answer) => {
-       alert(answer);
+       // alert(answer);
+        get("answer").innerHTML = "Группа = \n" + JSON.parse(answer).name + " (id = " + JSON.parse(answer).id + ")";
     });
 }
 
@@ -180,7 +184,8 @@ function addusertogroup() {
         user: userName + "",
         role: role + "",
     }), (answer) => {
-       alert(answer);
+       // alert(answer);
+        get("answer").innerHTML = "Участник = \n" + JSON.parse(answer).user + " (id = " + JSON.parse(answer).id + "___role = "+ JSON.parse(answer).role + ")";
     });
 }
 

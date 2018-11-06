@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Страница администратора</title>
+    <style>
+        body {
+            padding: 30px;
+        }
+
+        button {
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            padding: .8em 1em calc(.8em + 3px);
+            border-radius: 3px;
+            background: rgb(64,199,129);
+            box-shadow: 0 -3px rgb(53,167,110) inset;
+            transition: 0.2s;
+        }
+        button:hover { background: rgb(53, 167, 110); }
+        button:active {
+            background: rgb(33,147,90);
+            box-shadow: 0 3px rgb(33,147,90) inset;
+        }
+        .left-box {
+            background-color: white; /* Цвет фона слоя */
+            padding: 5px; /* Поля вокруг текста */
+            float: left; /* Обтекание по правому краю */
+            width: 400px; /* Ширина слоя */
+            border-right: dashed 1px limegreen;
+        }
+        .right-box {
+            background-color: white; /* Цвет фона слоя */
+            padding: 5px; /* Поля вокруг текста */
+            width: 400px; /* Ширина слоя */
+            float: left; /* Обтекание по правому краю */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Страница администратора</h1>
+<hr>
+<br>
+
+<h2>Авторизация / Регистрация</h2>
+<p>Логин</p>
+<input spellcheck = 'false' autocomplete = 'off' type = "text" id = "loginField">
+<br>
+<p>Пароль</p>
+<input spellcheck = 'false' autocomplete = 'off' type = "text" id = "passwordField">
+<br>
+<br>
+<button onclick = "registrate();">Зарегистрироваться</button>
+<button onclick = "avtorizate();">Авторизоваться</button>
+
+<br>
+<br>
+<hr>
+<div class="left-box">
+    <h2>Создать мою организацию</h2>
+    <p>Название организации</p>
+    <input spellcheck = 'false' autocomplete = 'off' type = "text" id = "organizationNameField">
+    <button onclick = "createorganization();">Создать организацию</button>
+
+    <br>
+    <br>
+    <h2>Получить мои организации</h2>
+    <button onclick = "geymyorganizations();">Получить мои организации</button>
+    <br>
+    <br>
+
+    <hr>
+    <h2>Получить группы внутри организации по ID</h2>
+    <p>ID организации</p>
+    <input spellcheck = 'false' autocomplete = 'off' type = "number" id = "organIDfield">
+    <br>
+    <br>
+    <button onclick = "getGroupsInOrgs();">Получить группы внутри организации</button>
+
+    <br>
+    <br>
+
+    <h2>Добавить группу в организацию</h2>
+    <p>Имя группы</p>
+    <input spellcheck = 'false' autocomplete = 'off' type = "text" id = "groupNameAddingToOrg">
+    <br>
+    <p>ID организации</p>
+    <input spellcheck = 'false' autocomplete = 'off' type = "number" id = "orgIdFF">
+    <br>
+    <br>
+    <button onclick = "addGroupFunc();">Добавить группу</button>
+
+    <br>
+    <br>
+
+    <hr>
+    <h2>Посмотреть участников группы по ID</h2>
+    <p>ID группы</p>
+    <input spellcheck = 'false' autocomplete = 'off' type = "number" id = "groupIdField">
+    <br>
+    <br>
+    <button onclick = "lookMembersGroup();">Посмотреть участников группы</button>
+
+    <br>
+    <br>
+
+    <h2>Добавить участника в группу</h2>
+    <p>ID группы</p>
+    <input spellcheck = 'false' autocomplete = 'off' type = "number" id = "groupIdAddingUser">
+    <p>Роль</p>
+    <select size = "1" id = "cb1">
+        <option value = "student">student</option>
+        <option value = "teacher">teacher</option>
+    </select>
+    <p>Имя пользователя</p>
+    <input spellcheck = 'false' autocomplete = 'off' type = "text" id = "userNameAddingField">
+    <br>
+    <br>
+    <button onclick = "addusertogroup();">Добавить участника</button>
+
+    <br>
+    <br>
+</div>
+<div id="answer" class="right-box">
+    HELLO
+</div>
+
+<script src = "code.js"></script>
+
+</body>
+</html>

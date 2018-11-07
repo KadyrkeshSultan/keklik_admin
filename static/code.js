@@ -1,5 +1,13 @@
 "use strict";
 
+function htmlEntities(s) {
+    s = s + "";
+    let div = document.createElement('div');
+    let text = document.createTextNode(s);
+    div.appendChild(text);
+    return div.innerHTML;
+}
+
 function getQuery(url, callback) {
     let xhr = new XMLHttpRequest();
     xhr.withCredentials = false;
@@ -83,7 +91,7 @@ function registrate() {
        localStorage.setItem("MyToken", "Token " + token);
        localStorage.setItem("UserName", login);
        // alert("Регистрация\n" + answer);
-        get("auth_answer").innerHTML = "<br>Регистрация, username = \n" + JSON.parse(answer).username;
+        get("auth_answer").innerHTML = "<br>" + htmlEntities("Регистрация, username = \n" + JSON.parse(answer).username);
     });
 }
 
@@ -100,7 +108,7 @@ function avtorizate() {
         localStorage.setItem("MyToken", "Token " + token);
         localStorage.setItem("UserName", login);
         // alert("Авторизация\n" + answer);
-        get("auth_answer").innerHTML = "<br>Авторизация, usermame = \n" + JSON.parse(answer).username;
+        get("auth_answer").innerHTML = "<br>" + htmlEntities("Авторизация, usermame = \n" + JSON.parse(answer).username);
     });
 }
 
@@ -110,7 +118,7 @@ function createorganization() {
        name: organizationName
     }), (answer) => {
         // alert(answer);
-        get("answer").innerHTML = "Организация = \n" + JSON.parse(answer).name + " (id = " + JSON.parse(answer).id + ")";
+        get("answer").innerHTML = htmlEntities("Организация = \n" + JSON.parse(answer).name + " (id = " + JSON.parse(answer).id + ")");
     });
 }
 
@@ -124,7 +132,7 @@ function geymyorganizations() {
            admins.forEach((adminMan) => {
               if(adminMan.user.username === localStorage.getItem("UserName")) {
                   // myOrgs.push("Name: " + element.name + "   Id: " + element.id + "\n");
-                  myOrgs.push("<br>Org_Name: " + element.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Org_Id: " + element.id);
+                  myOrgs.push("<br>" + htmlEntities("Org_Name: " + element.name + "______Org_Id: " + element.id));
               }
            });
         });
@@ -140,7 +148,7 @@ function getGroupsInOrgs() {
     getQueryWithToken(start + "/organizations/" + id + "/groups/", (answer) => {
         const arr = JSON.parse(answer);
         arr.forEach((group) => {
-            myGroups.push("<br>Group_Name: " + group.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Group_Id: " + group.id);
+            myGroups.push("<br>" + htmlEntities("Group_Name: " + group.name + "______Group_Id: " + group.id));
             // myGroups.push("GroupName: " + group.name + "   GroupId: " + group.id + "\n");
         });
         // alert(myGroups);
@@ -156,7 +164,7 @@ function addGroupFunc() {
         name: groupName,
     }), (answer) => {
        // alert(answer);
-        get("answer").innerHTML = "Группа = \n" + JSON.parse(answer).name + " (id = " + JSON.parse(answer).id + ")";
+        get("answer").innerHTML = htmlEntities("Группа = \n" + JSON.parse(answer).name + " (id = " + JSON.parse(answer).id + ")");
     });
 }
 
@@ -167,7 +175,7 @@ function lookMembersGroup() {
     getQueryWithToken(start + `/groups/${groupId}/members/`, (answer) => {
         const members = JSON.parse(answer.toString());
         members.forEach((m) => {
-            mmm.push("<br>ID: " + m.id + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User: " + m.user + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Role: " + m.role);
+            mmm.push("<br>" + htmlEntities("ID: " + m.id + "______User: " + m.user + "______Role: " + m.role));
             // mmm.push("ID: " + m.id + "  User: " + m.user + "\n");
         });
         // alert(mmm);
@@ -185,7 +193,7 @@ function addusertogroup() {
         role: role + "",
     }), (answer) => {
        // alert(answer);
-        get("answer").innerHTML = "Участник = \n" + JSON.parse(answer).user + " (id = " + JSON.parse(answer).id + "___role = "+ JSON.parse(answer).role + ")";
+        get("answer").innerHTML = htmlEntities("Участник = \n" + JSON.parse(answer).user + " (id = " + JSON.parse(answer).id + "___role = "+ JSON.parse(answer).role + ")");
     });
 }
 

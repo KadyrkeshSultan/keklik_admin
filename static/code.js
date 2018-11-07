@@ -2,7 +2,7 @@
 
 function getQuery(url, callback) {
     let xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+    xhr.withCredentials = false;
     xhr.open("GET", url, true);
     xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
     xhr.send(null);
@@ -17,7 +17,7 @@ function getQuery(url, callback) {
 
 function bodyQuery(method, url, body, callback) {
     let xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+    xhr.withCredentials = false;
     xhr.open(method.toString(), url, true);
     xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
     xhr.send(body.toString());
@@ -32,7 +32,7 @@ function bodyQuery(method, url, body, callback) {
 
 function getQueryWithToken(url, callback) {
     let xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+    xhr.withCredentials = false;
     xhr.open("GET", url, true);
     xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
     xhr.setRequestHeader("Authorization", localStorage.getItem("MyToken"));
@@ -48,7 +48,7 @@ function getQueryWithToken(url, callback) {
 
 function bodyQueryWithToken(method, url, body, callback) {
     let xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+    xhr.withCredentials = false;
     xhr.open(method.toString(), url, true);
     xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
     xhr.setRequestHeader("Authorization", localStorage.getItem("MyToken"));

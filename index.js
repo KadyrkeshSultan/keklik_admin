@@ -9,6 +9,10 @@ app.get('/admin/', function(req, res) {
     res.sendfile("static/index.html");
 });
 
+app.get('/admin/code.js', function(req, res) {
+    res.sendfile("static/code.js");
+});
+
 app.get('/', function(req, res) {
     res.sendfile("static/index.html");
 });
